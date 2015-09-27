@@ -14,10 +14,10 @@
     
     $email_error="";
     $password_error="";
-	$password1_error="";
+	$create_password_error="";
 	$firstname_error="";
 	$lastname_error="";
-	$email2_error="";
+	$create_email_error="";
 	
     //Muutujad väärtustega
     $email = "";
@@ -90,18 +90,18 @@
                 $lastname = test_input($_POST["lastname"]);            
             }
             if(empty($_POST["email2"])){
-                $email2_error="Kohustuslik väli";
+                $create_email_error="Kohustuslik väli";
             }else{
                 //annan väärtuse
                 $email2 = test_input($_POST["email2"]);            
             }
             if(empty($_POST["password1"])){
-                $password1_error="Ei saa olla tühi";
+                $create_password_error="Ei saa olla tühi";
             }else{
                 
                 //parool ei ole tühi, kontrollime pikkust
                 if(strlen($_POST["password1"]) < 8){
-                    $password1_error="Peab olema vähemalt 8 sümbolit";
+                    $create_password_error="Peab olema vähemalt 8 sümbolit";
                     
                 }else{
                 //annan väärtuse
@@ -112,7 +112,7 @@
       
             }
                         
-            if($firstname_error == "" && $lastname_error == "" && $email2_error == "" && $password1_error == "" ){
+            if($firstname_error == "" && $lastname_error == "" && $create_email_error == "" && $create_password_error == "" ){
                 
                 echo hash ("sha512", $password1);
                 //echo "Võib kasutaja luua! Kasutaja nimi on ".$email2." ja parool on ".$password1." Nimi on ".$firstname;
@@ -176,8 +176,8 @@
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <input type="text" name="firstname" placeholder="Eesnimi" value="<?php echo $firstname; ?>">* <?php echo $firstname_error;?><br><br>
 		<input type="text" name="lastname" placeholder="Perenimi" value="<?php echo $lastname; ?>">*<?php echo $lastname_error;?><br><br>
-		<input type="email" name="email2" placeholder="E-post" value="<?php echo $email2; ?>">*<?php echo $email2_error;?><br><br>
-		<input type="password" name="password1" placeholder="Parool" value="<?php echo $password1; ?>">*<?php echo $password1_error;?><br><br>
+		<input type="email" name="email2" placeholder="E-post" value="<?php echo $email2; ?>">*<?php echo $create_email_error;?><br><br>
+		<input type="password" name="password1" placeholder="Parool" value="<?php echo $password1; ?>">*<?php echo $create_password_error;?><br><br>
 		<input type="submit" name="create" value="Create">
 		
 		</form>
